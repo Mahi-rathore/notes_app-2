@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Note</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+
+            background:
+                url("{% static 'images/notes.png' %}") no-repeat bottom right,
+                linear-gradient(120deg, #eef2f7, #d9e2ec, #f5f7fa);
+
+            background-size: 240px, cover;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            width: 400px;
+            padding: 35px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #1f2d3d;
+        }
+
+        input, textarea {
+            width: 95%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #2f80ed;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1c6dd0;
+        }
+
+        a {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Edit Note</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" value="{{ note.title }}" required>
+        <textarea name="content" required>{{ note.content }}</textarea>
+        <button type="submit">Update</button>
+    </form>
+
+    <a href="/">← Back to Home</a>
+</div>
+
+</body>
+</html>
